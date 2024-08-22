@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Chat from './Chat';
+
+
+import { Button } from 'primereact/button';
+import { FaMoon, FaSun, FaCog } from 'react-icons/fa';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [theme, setTheme] = useState('light');
+    const [language, setLanguage] = useState('english');
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        document.body.className = newTheme; // Apply the theme to the body element
+    };
+
+    const changeLanguage = (lang) => {
+        setLanguage(lang);
+        alert(`Language changed to ${lang}`);
+    };
+
+    return (
+        <div className={`app-container ${theme}`}>
+            <div className="header">
+                <div className="top-right-icons">
+                    <Button
+                        icon={theme === 'light' ? <FaMoon /> : <FaSun />}
+                        onClick={toggleTheme}
+                        className="theme-toggle-button"
+                        tooltip={theme === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode"}
+                    />
+                    <Button
+                        icon={<FaCog />}
+                        className="settings-button"
+                        tooltip="Change Language"
+                        onClick={() => {
+                            const lang = prompt('Select Language: english, telugu, hindi', language);
+                            if (lang) changeLanguage(lang);
+                        }}
+                    />
+                </div>
+            </div>
+            <Chat />
+        </div>
+    );
 }
 
 export default App;

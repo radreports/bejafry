@@ -1,0 +1,7 @@
+version: "3"
+services:
+  pacs-ui:
+    image: anilyerramasu/bejafry
+    ports:
+      - 4444:80
+  

@@ -1,0 +1,145 @@
+body, html {
+    /* height: 100%;
+    margin: 0; */
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a; /* Optional: Change the background color */
+}
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 80vh;
+    padding: 0px;
+    color: #fff;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 1400px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #2e2e2e;
+    border-radius: 8px;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+.message-card {
+    background-color: #2e2e2e; /* Match the background of the chat container */
+    border: none; /* Remove the default border */
+    box-shadow: none; /* Remove any default shadow */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Padding inside the card */
+    margin: 5px 0; /* Margin between the cards */
+    width: 100%; /* Ensure the card takes full width */
+    color: white; /* Ensure the text color is white */
+}
+
+.message.user .message-content {
+    background-color: black;
+    
+
+    color: white;
+    text-align: right;
+    border-radius: 10px 10px 0 10px;
+    padding: 10px;
+}
+
+.message.RadAssistant .message-content {
+    background-color: #444;
+    color: white;
+    text-align: left;
+    border-radius: 10px 10px 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+.chat-footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    background-color: #2e2e2e;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.attachment-button {
+    background-color: #2e2e2e;
+    color: #ddd;
+    border: none;
+    margin-right: 10px;
+}
+
+.message-input {
+    flex: 1;
+    border: none;
+    border-radius: 25px;
+    background-color: #2e2e2e;
+    color: #ddd;
+    padding: 10px 15px;
+    margin-right: 10px;
+    resize: none; /* Prevents resizing */
+}
+
+.send-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    
+}
+/* Loading indicator styles */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 4px solid #ddd;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.copy-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.2em;
+    color: #007bff;
+    vertical-align: middle;
+}
+
+.copy-icon:hover {
+    color: #0056b3;
+}
+.formatted-response {
+    white-space: pre-wrap; /* Preserves whitespace and wraps lines */
+    /* font-family: 'Courier New', Courier, monospace;  */
+    /* Optional: use a monospaced font for code-like appearance */
+    /* background-color: #f4f4f4; */
+    background-color: rgb(65, 60, 60);
+     /* Optional: light gray background */
+    padding: 10px; /* Optional: add some padding */
+    border-radius: 5px; /* Optional: rounded corners */
+    margin-top: 5px;
+    display: block;
+}
