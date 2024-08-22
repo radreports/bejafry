@@ -24,7 +24,7 @@ function App() {
     return (
         <div className={`app-container ${theme}`}>
                       <div class="top-center">
-                <h1>Beja Fry</h1>
+                <h1>Beja - Conversational AI</h1>
                 
             </div>
             <div className="header">

@@ -63,7 +63,7 @@ const Chat = () => {
     
                 const newMessages = [...messages, 
                     { role: 'user', content: ` ${extracted_text}` }, 
-                    { role: 'Bejafry', content: llama_response }
+                    { role: 'Beja', content: llama_response }
                 ];
                 setMessages(newMessages);
             } catch (error) {
@@ -172,7 +172,7 @@ const Chat = () => {
                     top_p: 0.9,
                     max_gen_len: 512
                 });
-                console.log('Bejafry response:', response.data.history);
+                console.log('Beja response:', response.data.history);
                 response.data.history.shift();
                 setMessages(response.data.history.map(([role, content]) => ({ role, content })));
                 // Update messages with the response from RadAssistant
@@ -229,7 +229,7 @@ const Chat = () => {
                 });
 
                 const extractedText = response.data.extracted_text;
-                const newMessages = [...messages, { role: 'user', content: `Uploaded file: ${selectedFile.name}` }, { role: 'Bejafry', content: extractedText }];
+                const newMessages = [...messages, { role: 'user', content: `Uploaded file: ${selectedFile.name}` }, { role: 'Beja', content: extractedText }];
                 setMessages(newMessages);
                 setSelectedFile(null);
             } catch (error) {
@@ -265,15 +265,15 @@ const Chat = () => {
                     <div key={idx} className={`message ${msg.role}`}>
                         <Card className="message-card">
                             <div className="message-content">
-                                {msg.role === 'Bejafry' && (
+                                {msg.role === 'Beja' && (
                                     <AiOutlineCopy
                                         className="copy-icon"
                                         onClick={() => copyToClipboard(msg.content)}
                                         title="Copy to clipboard"
                                     />
                                 )}
-                                <strong>{msg.role === 'user' ? 'You' : 'Bejafry'}:</strong>
-                                {/* <strong>{Bejafry:}</strong> */}
+                                <strong>{msg.role === 'user' ? 'You' : 'Beja'}:</strong>
+                                {/* <strong>{Beja:}</strong> */}
                                 <pre className="formatted-response">{formatMessageContent(msg.content)}</pre>
                             </div>
                         </Card>
@@ -316,7 +316,7 @@ const Chat = () => {
                     value={userInput}
                     onChange={handleInputChange}
                     onKeyPress={handleKeyPress}
-                    placeholder="Message Bejafry"
+                    placeholder="Message Beja"
                     className="message-input"
                     autoResize={false}
                     rows={1}
