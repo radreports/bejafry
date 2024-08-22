@@ -259,6 +259,7 @@ const Chat = () => {
     return (
         <div className="col-12 chat-container">
             {/* Displaying chat messages */}
+
             <div className="chat-messages">
                 {messages.map((msg, idx) => (
                     <div key={idx} className={`message ${msg.role}`}>
@@ -305,6 +306,7 @@ const Chat = () => {
                 />
                 <Button
                     label="Upload"
+                    style={{ color: 'white' }}
                     className="p-button-info"
                     onClick={uploadFile}
                     disabled={!selectedFile || loading} // Disable when no file selected or loading

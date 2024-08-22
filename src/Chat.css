@@ -10,8 +10,8 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 80vh;
-    padding: 0px;
+    height: 60vh;
+    padding: 100px;
     color: #fff;
 }
 
