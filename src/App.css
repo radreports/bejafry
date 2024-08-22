@@ -41,3 +41,21 @@ body.dark {
 .message.RadAssistant .message-card {
   background-color: var(--surface-card);
 }
+.top-center {
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center;
+  width: 100%;
+  position: absolute; /* Positions the div absolutely within the parent */
+  top: 0; /* Positions the div at the top */
+  padding: 10px; /* Optional: Add some padding if needed */
+  background-color: var(--surface-0); /* Optional: Background color for the div */
+  z-index: 10; /* Ensures it stays above other content */
+}
+
+
+h1 {
+  margin: 0; /* Remove default margin */
+  font-size: 30px; /* Adjust the font size as needed */
+  color: #f5f1f1;
+}
