@@ -1,61 +1,140 @@
-body.light {
-  background-color: white;
-  color: black;
-}
-
-body.dark {
-  background-color: #121212;
-  color: white;
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   height: 100vh;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
-.header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px;
-  background-color: var(--surface-0);
+.header h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.top-right-icons {
+.input-area {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 20px;
   gap: 10px;
 }
 
-.chat-container {
-  flex: 1;
+.file-upload {
   display: flex;
-  flex-direction: column;
-  padding: 10px;
-  background-color: var(--surface-0);
-}
-
-.message.user .message-card {
-  background-color: var(--primary-300);
-}
-
-.message.RadAssistant .message-card {
-  background-color: var(--surface-card);
-}
-.top-center {
-  display: flex;
-  justify-content: center; /* Centers the content horizontally */
   align-items: center;
-  width: 100%;
-  position: absolute; /* Positions the div absolutely within the parent */
-  top: 0; /* Positions the div at the top */
-  padding: 10px; /* Optional: Add some padding if needed */
-  background-color: var(--surface-0); /* Optional: Background color for the div */
-  z-index: 10; /* Ensures it stays above other content */
 }
 
+.upload-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  margin-right: 10px;
+}
 
-h1 {
-  margin: 0; /* Remove default margin */
-  font-size: 30px; /* Adjust the font size as needed */
-  color: #f5f1f1;
+.user-input {
+  flex: 1;
+  min-width: 150px; /* Minimum width for the input field */
+  max-width: 100%; /* Allow expansion to full width */
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+  overflow: hidden;
+  transition: width 0.2s ease-in-out;
+}
+
+.user-input:focus {
+  border-color: #007bff;
+  width: 100%; /* Expands to full width on focus */
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rtc-button, .send-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rtc-button:hover, .send-button:hover {
+  background-color: #0056b3;
+}
+
+.response-area {
+  width: 100%;
+  max-width: 1400px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow-y: auto;
+  max-height: 50vh;
+}
+
+.message-card {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+/* Styles for user messages */
+.message.user .message-card {
+  background-color: #e6f3ff;
+  align-self: flex-end; /* Aligns user messages to the right */
+  color: #333;
+}
+
+/* Styles for Bejafry (server) messages */
+.message.Bejafry .message-card {
+  background-color: #f5f5f5;
+  align-self: flex-start; /* Aligns server messages to the left */
+  color: #333;
+  border-left: 4px solid #007bff; /* Adds a blue border on the left side of the server messages */
+}
+
+.formatted-response {
+  white-space: pre-wrap;
+  color: inherit;
+}
+
+/* Loading indicator styles */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #383434;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
