@@ -149,3 +149,33 @@ body, html {
     margin-top: 5px;
     display: block;
 }
+.prompt-list {
+    display: flex;
+    flex-wrap: wrap; /* Wrap prompts to the next line if they exceed the width */
+    gap: 10px; /* Space between each prompt button */
+    margin-top: 10px; /* Space between the message and the prompts */
+}
+
+.prompt-button {
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Rounded edges */
+    padding: 8px 16px; /* Space inside the button */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.prompt-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.prompt-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 4px #0056b3; /* Add a blue shadow for focus state */
+}
+
+.prompt-button:active {
+    background-color: #003f7f; /* Even darker blue on click */
+}

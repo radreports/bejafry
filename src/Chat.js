@@ -16,7 +16,6 @@ const Chat = () => {
     const [loading, setLoading] = useState(false);
     const [isRecording, setIsRecording] = useState(false);
     const [audioBlob, setAudioBlob] = useState(null);
-    const [prompts, setPrompts] = useState([]);
     const chatEndRef = useRef(null);
     const mediaRecorderRef = useRef(null);
     const silenceDetectionRef = useRef(null);
@@ -46,6 +45,7 @@ const Chat = () => {
             sendAudioMessage(); // Automatically send the audio when available
         }
     }, [audioBlob]);
+    
     const sendAudioMessage = async () => {
         if (audioBlob) {
             setLoading(true);
@@ -116,10 +116,6 @@ const Chat = () => {
         console.log('Silence detected');
         if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
             mediaRecorderRef.current.stop(); // Stop recording
-             // Send audio when silence is detected
-            //  if (audioBlob) {
-            //     sendAudioMessage(); // Send the recorded audio if available
-            // }
              console.log('Audio sent');
         }
     }
@@ -130,6 +126,7 @@ const Chat = () => {
             startRecording(); // Resume recording
         }
     }
+    
     const startRecording = () => {
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
@@ -137,7 +134,6 @@ const Chat = () => {
                 mediaRecorderRef.current.ondataavailable = (event) => {
                     if (event.data.size > 0) {
                         setAudioBlob(event.data); // Save the blob for sending
-                        // Send audio when data is available
                     }
                 };
                 detectSilence(stream, onSilence, onSpeak);
@@ -156,17 +152,16 @@ const Chat = () => {
         }
     };
      
-
-    const sendMessage = async () => {
-        if (userInput.trim()) {
-            const newMessages = [...messages, { role: 'user', content: userInput }];
+    const sendMessage = async (message = userInput) => {
+        if (message.trim()) {
+            const newMessages = [...messages, { role: 'user', content: message }];
             setMessages(newMessages);
             setUserInput('');
-            setLoading(true); // Show loading indicator
+            setLoading(true);
 
             try {
                 const response = await axios.post('https://chat.deepmd.io/vuely/chat', {
-                    user_input: userInput,
+                    user_input: message,
                     history: newMessages.map(msg => [msg.role, msg.content]),
                     temperature: 0.6,
                     top_p: 0.9,
@@ -174,16 +169,11 @@ const Chat = () => {
                 });
                 console.log('Vuely response:', response.data.history);
                 response.data.history.shift();
-                // response.data.history.shift();
                 setMessages(response.data.history.map(([role, content]) => ({ role, content })));
-                
-
-
-                
             } catch (error) {
                 console.error('Error sending message:', error);
             } finally {
-                setLoading(false); // Hide loading indicator
+                setLoading(false);
             }
         }
     };
@@ -236,18 +226,35 @@ const Chat = () => {
     };
 
     const formatMessageContent = (content) => {
-        const formattedContent = content.split(/(\*\*.*?\*\*)/g).map((part, index) => {
-            if (part.startsWith('**') && part.endsWith('**')) {
-                return <strong key={index}>{part.slice(2, -2)}</strong>;
-            }
-            return part;
-        });
-        return formattedContent;
+        const promptRegex = /<begin Prompt>([\s\S]*?)<end Prompt>/;
+        const match = content.match(promptRegex);
+
+        if (match) {
+            const promptText = match[1].trim();
+            const prompts = promptText.split('\n').filter(p => p.trim() !== '');
+            return (
+                <>
+                    {content.split(promptRegex)[0]} 
+                    <div className="prompt-list">
+                        {prompts.map((prompt, index) => (
+                            <Button 
+                                key={index}
+                                className="prompt-button"
+                                onClick={() => sendMessage(prompt)}
+                            >
+                                {prompt}
+                            </Button>
+                        ))}
+                    </div>
+                </>
+            );
+        }
+
+        return content;
     };
 
     return (
         <div className="col-12 chat-container">
-            {/* Displaying chat messages */}
             <div className="chat-footer">
                 <input
                     type="file"
@@ -289,12 +296,6 @@ const Chat = () => {
                     tooltip={isRecording ? "Stop Recording" : "Start Recording"}
                     tooltipOptions={{ position: 'top' }}
                 />
-                {/* <Button
-                    label="Send Audio"
-                    className="p-button-warning"
-                    onClick={sendAudioMessage}
-                    disabled={!audioBlob || loading} // Disable when no audio recorded or loading
-                /> */}
                 <Button
                     icon={<FiSend />}
                     className="send-button"
@@ -321,7 +322,6 @@ const Chat = () => {
                                     />
                                 )}
                                 <strong>{msg.role === 'user' ? 'You' : 'Vuely'}:</strong>
-                                {/* <strong>{Vuely:}</strong> */}
                                 <pre className="formatted-response">{formatMessageContent(msg.content)}</pre>
                             </div>
                         </Card>
