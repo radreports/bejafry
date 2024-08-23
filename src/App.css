@@ -58,4 +58,5 @@ h1 {
   margin: 0; /* Remove default margin */
   font-size: 30px; /* Adjust the font size as needed */
   color: #f5f1f1;
+  padding: 30px;
 }
