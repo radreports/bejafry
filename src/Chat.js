@@ -256,7 +256,10 @@ const Chat = () => {
 
     return (
         <div className="col-12 chat-container">
-
+<div  className="top-center">
+                        <h1 >Your Personal AI Assistant</h1>
+                        
+                    </div>
             <div className="chat-messages">
                 {messages.map((msg, idx) => (
                     <div key={idx} className={`message ${msg.role}`}>

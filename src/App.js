@@ -23,12 +23,12 @@ function App() {
 
     return (
         <div className={`app-container ${theme}`}>
-                      <div  className="top-center">
+                      {/* <div  className="top-center">
                         <h1 >Your Personal AI Assistant</h1>
                         
-                    </div>
+                    </div> */}
 
-            <div className="header">
+            {/* <div className="header">
                 <div className="top-right-icons">
                     <Button
                         icon={theme === 'light' ? <FaMoon /> : <FaSun />}
@@ -46,7 +46,7 @@ function App() {
                         }}
                     />
                 </div>
-            </div>
+            </div> */}
             <Chat />
         </div>
     );

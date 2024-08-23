@@ -1,57 +1,47 @@
+/* General Styles */
 body, html {
-    /* height: 100%;
-    margin: 0; */
-    /* display: flex; */
     justify-content: center;
     align-items: center;
-    background-color: #363433e8; /* Optional: Change the background color */
+    background-color: #363433e8; /* Background color */
 }
-.header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
-    background-color: var(--surface-0);
-  }
+
+/* Chat Container */
 .chat-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     height: 60vh;
-    padding-left: 100px;
+    padding: 20px; /* Reduced padding for mobile */
     color: #fff;
+    width: 100%;
+    max-width: 1400px;
 }
 
+/* Chat Messages */
 .chat-messages {
     flex: 1;
     overflow-y: auto;
     width: 100%;
-    max-width: 1400px;
-    padding: 50px;
+    padding: 20px; /* Reduced padding for mobile */
     margin-bottom: 10px;
     background-color: #2e2e2e;
     border-radius: 8px;
 }
 
-.message {
-    margin-bottom: 10px;
-}
+/* Message Cards */
 .message-card {
     background-color: #2e2e2e; /* Match the background of the chat container */
-    border: none; /* Remove the default border */
-    box-shadow: none; /* Remove any default shadow */
-    border-radius: 10px; /* Rounded corners */
-    padding: 10px; /* Padding inside the card */
-    margin: 5px 0; /* Margin between the cards */
-    width: 100%; /* Ensure the card takes full width */
-    color: white; 
-    /* Ensure the text color is white */
-   
+    border: none;
+    box-shadow: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    color: white;
 }
 
 .message.user .message-content {
     background-color: black;
-    
-
     color: white;
     text-align: right;
     border-radius: 10px 10px 0 10px;
@@ -61,29 +51,31 @@ body, html {
 .message.RadAssistant .message-content {
     background-color: #444;
     color: white;
-   
-    
     text-align: left;
     border-radius: 10px 10px 10px 0;
     padding: 10px;
     width: 100%;
 }
 
+/* Chat Footer */
 .chat-footer {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 1400px;
     background-color: #2e2e2e;
     border-radius: 8px;
-    padding: 60px;
+    padding: 20px; /* Reduced padding for mobile */
+    gap: 10px; /* Space between elements */
+    flex-wrap: wrap; /* Allows wrapping of elements on small screens */
 }
 
-.attachment-button {
-    background-color: #2e2e2e;
-    color: #ddd;
+.attachment-button, .send-button {
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    margin-right: 10px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    flex-shrink: 0; /* Prevents shrinking */
 }
 
 .message-input {
@@ -97,15 +89,7 @@ body, html {
     resize: none; /* Prevents resizing */
 }
 
-.send-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50%;
-    
-}
-/* Loading indicator styles */
+/* Loading Indicator */
 .loading-indicator {
     display: flex;
     align-items: center;
@@ -115,6 +99,7 @@ body, html {
     color: #ddd;
 }
 
+/* Spinner */
 .spinner {
     width: 24px;
     height: 24px;
@@ -130,6 +115,7 @@ body, html {
     100% { transform: rotate(360deg); }
 }
 
+/* Copy Icon */
 .copy-icon {
     cursor: pointer;
     margin-left: 10px;
@@ -141,48 +127,86 @@ body, html {
 .copy-icon:hover {
     color: #0056b3;
 }
+
+/* Formatted Response */
 .formatted-response {
-    white-space: pre-wrap; /* Preserves whitespace and wraps lines */
-    font-family: 'Courier New', Courier, monospace; 
-    /* Optional: use a monospaced font for code-like appearance */
-    /* background-color: #f4f4f4; */
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
     background-color: rgb(65, 60, 60);
-     /* Optional: light gray background */
-    padding: 10px; /* Optional: add some padding */
-    border-radius: 5px; /* Optional: rounded corners */
+    padding: 10px;
+    border-radius: 5px;
     margin-top: 5px;
     display: block;
 }
 
+/* Prompt List */
 .prompt-list {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px; /* Space between each prompt button */
-    margin-top: 10px; /* Space between the message and the prompts */
-    align-items: flex-start; /* Align buttons to the start of the container */
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: flex-start;
 }
 
 .prompt-button {
-    background-color: #007bff; /* Primary blue color */
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 20px; /* Rounded edges */
-    padding: 8px 16px; /* Space inside the button */
+    border-radius: 20px;
+    padding: 8px 16px;
     font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-    white-space: nowrap; /* Prevents text wrapping inside the button */
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
 .prompt-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
 }
 
 .prompt-button:focus {
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 4px #0056b3; /* Add a blue shadow for focus state */
+    outline: none;
+    box-shadow: 0 0 4px #0056b3;
 }
 
 .prompt-button:active {
-    background-color: #003f7f; /* Even darker blue on click */
+    background-color: #003f7f;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .chat-container {
+        padding: 10px;
+        height: 50vh;
+    }
+
+    .chat-messages {
+        padding: 10px;
+    }
+
+    .chat-footer {
+        padding: 10px;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .message-input {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%; /* Full width on mobile */
+    }
+
+    .attachment-button, .send-button {
+        padding: 8px 10px;
+    }
+
+    .spinner {
+        width: 20px;
+        height: 20px;
+        border-width: 3px;
+    }
+
+    .copy-icon {
+        font-size: 1em;
+    }
 }
