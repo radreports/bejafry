@@ -149,11 +149,13 @@ body, html {
     margin-top: 5px;
     display: block;
 }
+
 .prompt-list {
     display: flex;
-    flex-wrap: wrap; /* Wrap prompts to the next line if they exceed the width */
+    flex-direction: column; /* Stack buttons vertically */
     gap: 10px; /* Space between each prompt button */
     margin-top: 10px; /* Space between the message and the prompts */
+    align-items: flex-start; /* Align buttons to the start of the container */
 }
 
 .prompt-button {
@@ -165,6 +167,7 @@ body, html {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease; /* Smooth transition for background color */
+    white-space: nowrap; /* Prevents text wrapping inside the button */
 }
 
 .prompt-button:hover {

@@ -237,6 +237,7 @@ const Chat = () => {
                     {content.split(promptRegex)[0]} 
                     <div className="prompt-list">
                         {prompts.map((prompt, index) => (
+                            
                             <Button 
                                 key={index}
                                 className="prompt-button"
