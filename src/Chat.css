@@ -43,7 +43,9 @@ body, html {
     padding: 10px; /* Padding inside the card */
     margin: 5px 0; /* Margin between the cards */
     width: 100%; /* Ensure the card takes full width */
-    color: white; /* Ensure the text color is white */
+    color: white; 
+    /* Ensure the text color is white */
+   
 }
 
 .message.user .message-content {
@@ -59,6 +61,8 @@ body, html {
 .message.RadAssistant .message-content {
     background-color: #444;
     color: white;
+   
+    
     text-align: left;
     border-radius: 10px 10px 10px 0;
     padding: 10px;
@@ -139,7 +143,7 @@ body, html {
 }
 .formatted-response {
     white-space: pre-wrap; /* Preserves whitespace and wraps lines */
-    /* font-family: 'Courier New', Courier, monospace;  */
+    font-family: 'Courier New', Courier, monospace; 
     /* Optional: use a monospaced font for code-like appearance */
     /* background-color: #f4f4f4; */
     background-color: rgb(65, 60, 60);

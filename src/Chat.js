@@ -256,6 +256,33 @@ const Chat = () => {
 
     return (
         <div className="col-12 chat-container">
+
+            <div className="chat-messages">
+                {messages.map((msg, idx) => (
+                    <div key={idx} className={`message ${msg.role}`}>
+                        <Card className="message-card">
+                            <div className="message-content">
+                                {msg.role === 'Vuely' && (
+                                    <AiOutlineCopy
+                                        className="copy-icon"
+                                        onClick={() => copyToClipboard(msg.content)}
+                                        title="Copy to clipboard"
+                                    />
+                                )}
+                                <strong>{msg.role === 'user' ? 'You' : 'Vuely'}:</strong>
+                                <pre className="formatted-response">{formatMessageContent(msg.content)}</pre>
+                            </div>
+                        </Card>
+                    </div>
+                ))}
+                {loading && (
+                    <div className="loading-indicator">
+                        <div className="spinner"></div>
+                        <p>Waiting for response...</p>
+                    </div>
+                )}
+                <div ref={chatEndRef} />
+            </div>
             <div className="chat-footer">
                 <input
                     type="file"
@@ -310,33 +337,6 @@ const Chat = () => {
                     disabled={loading || (!userInput.trim() && !audioBlob)} // Disable if loading or neither input nor audioBlob is available
                 />
             </div>
-            <div className="chat-messages">
-                {messages.map((msg, idx) => (
-                    <div key={idx} className={`message ${msg.role}`}>
-                        <Card className="message-card">
-                            <div className="message-content">
-                                {msg.role === 'Vuely' && (
-                                    <AiOutlineCopy
-                                        className="copy-icon"
-                                        onClick={() => copyToClipboard(msg.content)}
-                                        title="Copy to clipboard"
-                                    />
-                                )}
-                                <strong>{msg.role === 'user' ? 'You' : 'Vuely'}:</strong>
-                                <pre className="formatted-response">{formatMessageContent(msg.content)}</pre>
-                            </div>
-                        </Card>
-                    </div>
-                ))}
-                {loading && (
-                    <div className="loading-indicator">
-                        <div className="spinner"></div>
-                        <p>Waiting for response...</p>
-                    </div>
-                )}
-                <div ref={chatEndRef} />
-            </div>
-
         </div>
     );
 };

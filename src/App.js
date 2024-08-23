@@ -24,9 +24,10 @@ function App() {
     return (
         <div className={`app-container ${theme}`}>
                       <div  className="top-center">
-                <h1 >Conversational AI</h1>
-                
-            </div>
+                        <h1 >Your Personal AI Assistant</h1>
+                        
+                    </div>
+
             <div className="header">
                 <div className="top-right-icons">
                     <Button
