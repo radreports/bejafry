@@ -19,7 +19,7 @@ const Chat = () => {
     const chatEndRef = useRef(null);
     const mediaRecorderRef = useRef(null);
     const silenceDetectionRef = useRef(null);
-
+    const inputRef = useRef(null);
     const MIN_DECIBELS = -45;
     const SILENCE_THRESHOLD_MS = 2000; // 1 second of silence
 
@@ -28,7 +28,11 @@ const Chat = () => {
             chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, [messages]);
-
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
     const toggleRecording = () => {
         if (isRecording) {
             stopRecording(); // Stop recording and silence detection
@@ -225,34 +229,34 @@ const Chat = () => {
         });
     };
 
-    const formatMessageContent = (content) => {
-        const promptRegex = /<begin Prompt>([\s\S]*?)<end Prompt>/;
-        const match = content.match(promptRegex);
+const formatMessageContent = (content) => {
+    const promptRegex = /<begin Prompt>([\s\S]*?)<end Prompt>/;
+    const match = content.match(promptRegex);
 
-        if (match) {
-            const promptText = match[1].trim();
-            const prompts = promptText.split('\n').filter(p => p.trim() !== '');
-            return (
-                <>
-                    {content.split(promptRegex)[0]} 
-                    <div className="prompt-list">
-                        {prompts.map((prompt, index) => (
-                            
-                            <Button 
-                                key={index}
-                                className="prompt-button"
-                                onClick={() => sendMessage(prompt)}
-                            >
-                                {prompt}
-                            </Button>
-                        ))}
-                    </div>
-                </>
-            );
-        }
+    if (match) {
+        const promptText = match[1].trim();
+        const prompts = promptText.split('\n').filter(p => p.trim() !== '');
+        return (
+            <>
+                {content.split(promptRegex)[0]} 
+                <div className="prompt-list">
+                    {prompts.map((prompt, index) => (
+                        <Button 
+                            key={index}
+                            className="prompt-button"
+                            onClick={() => sendMessage(prompt)}
+                        >
+                            {prompt}
+                        </Button>
+                    ))}
+                </div>
+            </>
+        );
+    }
 
-        return content;
-    };
+    return content;
+};
+
 
     return (
         <div className="col-12 chat-container">
@@ -311,6 +315,7 @@ const Chat = () => {
                 />
                 
                 <InputTextarea
+                    ref={inputRef} 
                     value={userInput}
                     onChange={handleInputChange}
                     onKeyPress={handleKeyPress}
